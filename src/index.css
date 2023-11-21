@@ -36,19 +36,19 @@
 
 @layer base {
   h1 {
-    @apply text-[32px] leading-none;
+    @apply text-[32px] leading-none font-bold;
     @apply xl:text-[40px];
   }
   h2 {
-    @apply text-[28px] leading-none;
+    @apply text-[28px] leading-none font-bold;
     @apply xl:text-[32px];
   }
   h3 {
-    @apply text-2xl leading-tight;
+    @apply text-2xl leading-tight font-bold;
     @apply xl:text-[28px];
   }
   h4 {
-    @apply text-xl leading-tight;
+    @apply text-xl leading-tight font-bold;
     @apply xl:text-2xl;
   }
   h5 {
@@ -63,15 +63,34 @@
     @apply text-sm leading-normal font-mono;
     @apply xl:text-base;
   }
-  ul{
+  ul {
     @apply flex;
   }
 }
 
-@layer components{
-  .nav-date-item{
-    @apply text-[var(--color-neutral-7)];
+@layer components {
+  .nav-date-list::before {
+    content: "";
+    @apply w-full h-1 bg-[var(--color-neutral-6)] rounded-full absolute top-[29px];
+  }
+  .nav-date-item {
+    @apply text-[var(--color-neutral-6)] relative transition-all duration-500;
     @apply hover:text-[var(--color-neutral-5)];
+  }
+  .nav-date-item::before {
+    content: "";
+    @apply w-4 h-4 bg-[var(--color-neutral-6)] rounded-full cursor-pointer absolute top-6 left-0 right-0 mx-auto transition-all duration-500;
+    @apply hover:bg-[var(--color-neutral-5)];
+  }
+  .selection {
+    @apply flex-1 flex justify-between items-center relative;
+  }
+  .option {
+    @apply w-full bg-[var(--color-neutral-1)] rounded-[var(--spacing-2)] shadow-lg flex-col overflow-hidden hidden transition-all absolute top-[var(--spacing-5)];
+  }
+  .option > li {
+    @apply w-full px-[var(--spacing-4)] py-[var(--spacing-2)] text-left;
+    @apply hover:bg-[var(--color-neutral-3)];
   }
 }
 
