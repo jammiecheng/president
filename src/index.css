@@ -23,7 +23,8 @@
   --color-neutral-3: #eeeeee;
   --color-neutral-4: #bdbdbd;
   --color-neutral-5: #616161;
-  --color-neutral-6: #000000;
+  --color-neutral-6: #353535;
+  --color-neutral-7: #000000;
 
   --spacing-1: 4px;
   --spacing-2: 8px;
@@ -64,7 +65,7 @@
     @apply xl:text-base;
   }
   ul {
-    @apply flex;
+    @apply flex justify-center;
   }
 }
 
@@ -92,6 +93,9 @@
     @apply w-full px-[var(--spacing-4)] py-[var(--spacing-2)] text-left;
     @apply hover:bg-[var(--color-neutral-3)];
   }
+  .person-item {
+    @apply flex gap-[var(--spacing-2)];
+  }
 }
 
 @layer utils {
@@ -99,4 +103,11 @@
     @apply text-xs leading-[1.75];
     @apply xl:text-sm;
   }
+}
+
+.react-svg-zoom-map {
+  @apply relative;
+}
+.labels {
+  @apply hidden;
 }

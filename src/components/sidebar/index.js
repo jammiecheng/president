@@ -1,3 +1,3 @@
 export default function Sidebar({ children }) {
-  return <aside className="flex-1">{children}</aside>;
+  return <aside className="xl:w-2/5">{children}</aside>;
 }
