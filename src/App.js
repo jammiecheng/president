@@ -1,34 +1,45 @@
-import Article from "./components/article";
-import Footer from "./components/footer";
+import { createContext, useEffect, useState } from "react";
+import Content from "./components/content";
 import Main from "./components/main";
 import Map from "./components/map";
 import Nav from "./components/nav";
-import Selection from "./components/selection";
-import Sidebar from "./components/sidebar";
-import { createContext, useState } from "react";
+import Footer from "./components/footer";
 
-export const locationContext = createContext();
-export const yearContext = createContext();
+export const requestContext = createContext();
+export const windowSizeContext = createContext();
 
 export default function App() {
-  const [area, setArea] = useState(["縣市", "鄉鎮市區", "村里鄰"]);
-  const [year, setYear] = useState(2020);
+  const [request, setRequest] = useState({
+    year: 2020,
+    location: ["全部", "選擇區域"],
+  });
+  const [isDesktop, setIsDesktop] = useState(true);
+
+  useEffect(() => {
+    const checkWindowSize = () =>
+      setIsDesktop(window.innerWidth > 768 ? true : false);
+
+    window.addEventListener("load", checkWindowSize);
+    window.addEventListener("resize", checkWindowSize);
+
+    return () => {
+      window.addEventListener("load", checkWindowSize);
+      window.removeEventListener("resize", checkWindowSize);
+    };
+  }, []);
 
   return (
     <div className="App">
-      <yearContext.Provider value={{ year, setYear }}>
-        <Nav />
-        <Main>
-          <locationContext.Provider value={{ area, setArea }}>
-            <Sidebar>
-              <Selection />
-              <Map />
-            </Sidebar>
-            <Article></Article>
-          </locationContext.Provider>
-        </Main>
-      </yearContext.Provider>
-      <Footer />
+      <windowSizeContext.Provider value={{ isDesktop, setIsDesktop }}>
+        <requestContext.Provider value={{ request, setRequest }}>
+          <Nav />
+          <Main>
+            <Map />
+            <Content />
+          </Main>
+          {!isDesktop && <Footer />}
+        </requestContext.Provider>
+      </windowSizeContext.Provider>
     </div>
   );
 }

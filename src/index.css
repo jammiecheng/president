@@ -2,112 +2,89 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+@font-face {
+  font-family: Mantou Sans;
+  src: local("饅頭黑體"),
+    url("../src/fonts/MantouSans-Regular.ttf") format("truetype");
+}
+
 :root {
-  --color-primary-1: #e1f5fe;
-  --color-primary-2: #81d4fa;
-  --color-primary-3: #29b6f6;
-  --color-primary-4: #0288d1;
+  --color-primary: #d4009b;
+  --color-text-primary: #334155;
+  --color-text-secondary: #64748b;
+  --color-bg: #e9ecef;
+  --color-hover: #f8f9fa;
+  --color-line: #dee2e6;
+  --color-role-1: #8082ff;
+  --color-role-2: #f4a76f;
+  --color-role-3: #57d2a9;
 
-  --color-secondary-1: #f1f8e9;
-  --color-secondary-2: #c5e1a5;
-  --color-secondary-3: #9ccc65;
-  --color-secondary-4: #689f38;
+  --color-gray-100: #f8f9fa;
+  --color-gray-200: #e9ecef;
+  --color-gray-300: #dee2e6;
+  --color-gray-400: #ced4da;
+  --color-gray-500: #adb5bd;
+  --color-gray-600: #6c757d;
+  --color-gray-700: #495057;
+  --color-gray-800: #343a40;
+  --color-gray-900: #212529;
 
-  --color-thirdary-1: #fbe9e7;
-  --color-thirdary-2: #ffab91;
-  --color-thirdary-3: #ff7043;
-  --color-thirdary-4: #e64a19;
+  --color-default-white: #ffffff;
+  --color-default-black: #000000;
 
-  --color-neutral-1: #ffffff;
-  --color-neutral-2: #fafafa;
-  --color-neutral-3: #eeeeee;
-  --color-neutral-4: #bdbdbd;
-  --color-neutral-5: #616161;
-  --color-neutral-6: #353535;
-  --color-neutral-7: #000000;
-
-  --spacing-1: 4px;
-  --spacing-2: 8px;
-  --spacing-3: 12px;
-  --spacing-4: 16px;
-  --spacing-5: 24px;
-  --spacing-6: 32px;
-  --spacing-7: 40px;
+  --sp-8: 8px;
+  --sp-16: 16px;
+  --sp-24: 24px;
+  --sp-32: 32px;
+  --sp-48: 48px;
+  --sp-64: 64px;
+  --sp-96: 96px;
+  --sp-192: 192px;
 }
 
 @layer base {
+  body {
+    font-family: "Inter", sans-serif;
+  }
   h1 {
-    @apply text-[32px] leading-none font-bold;
-    @apply xl:text-[40px];
+    @apply text-[33.52px] leading-normal font-bold tracking-[-0.8px] xl:text-[40px];
   }
   h2 {
-    @apply text-[28px] leading-none font-bold;
-    @apply xl:text-[32px];
+    @apply text-[28.11px] leading-normal font-bold xl:text-[32px];
   }
   h3 {
-    @apply text-2xl leading-tight font-bold;
-    @apply xl:text-[28px];
+    @apply text-[25.41px] leading-normal font-bold xl:text-[28px];
   }
   h4 {
-    @apply text-xl leading-tight font-bold;
-    @apply xl:text-2xl;
+    @apply text-[22.7px] leading-normal font-bold xl:text-[24px];
   }
   h5 {
-    @apply text-lg leading-normal;
-    @apply xl:text-xl;
+    @apply text-xl leading-normal font-bold;
   }
   h6 {
-    @apply text-base leading-normal;
-    @apply xl:text-lg;
-  }
-  body {
-    @apply text-sm leading-normal font-mono;
-    @apply xl:text-base;
+    @apply text-base leading-normal font-bold;
   }
   ul {
-    @apply flex justify-center;
+    @apply flex items-center;
   }
 }
 
 @layer components {
-  .nav-date-list::before {
-    content: "";
-    @apply w-full h-1 bg-[var(--color-neutral-6)] rounded-full absolute top-[29px];
-  }
-  .nav-date-item {
-    @apply text-[var(--color-neutral-6)] relative transition-all duration-500;
-    @apply hover:text-[var(--color-neutral-5)];
-  }
-  .nav-date-item::before {
-    content: "";
-    @apply w-4 h-4 bg-[var(--color-neutral-6)] rounded-full cursor-pointer absolute top-6 left-0 right-0 mx-auto transition-all duration-500;
-    @apply hover:bg-[var(--color-neutral-5)];
-  }
-  .selection {
-    @apply flex-1 flex justify-between items-center relative;
-  }
-  .option {
-    @apply w-full bg-[var(--color-neutral-1)] rounded-[var(--spacing-2)] shadow-lg flex-col overflow-hidden hidden transition-all absolute top-[var(--spacing-5)];
-  }
-  .option > li {
-    @apply w-full px-[var(--spacing-4)] py-[var(--spacing-2)] text-left;
-    @apply hover:bg-[var(--color-neutral-3)];
-  }
-  .person-item {
-    @apply flex gap-[var(--spacing-2)];
+  .map {
+    background-image: url("../src/images/map.svg");
+    @apply w-full h-full bg-no-repeat bg-contain;
   }
 }
 
-@layer utils {
+@layer utilities {
+  .body1 {
+    @apply text-base leading-normal;
+  }
+  .body2 {
+    @apply text-sm leading-normal;
+  }
   .small {
-    @apply text-xs leading-[1.75];
-    @apply xl:text-sm;
+    @apply text-xs leading-normal xl:text-sm;
   }
-}
-
-.react-svg-zoom-map {
-  @apply relative;
-}
-.labels {
-  @apply hidden;
 }

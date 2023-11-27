@@ -1,7 +1,3 @@
 export default function Main({ children }) {
-  return (
-    <main className="w-[90%] h-full mx-auto mt-[101px] mb-[calc(var(--spacing-1)*9)] py-[var(--spacing-4)] flex flex-col gap-[var(--spacing-4)] xl:mt-[72px] xl:flex-row">
-      {children}
-    </main>
-  );
+  return <main className="flex flex-col mt-[92px] xl:flex-row xl:h-[calc(100vh-72px)] xl:mt-[66px]">{children}</main>;
 }
