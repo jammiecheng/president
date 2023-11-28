@@ -483,7 +483,7 @@ export default function Content() {
           </h5>
           <table className="w-full mb-[calc(var(--sp-32)+var(--sp-8))]">
             <thead className="w-full flex bg-[var(--color-bg)] p-[var(--sp-8)] rounded-[calc(var(--sp-8)/2)]">
-              <th className="body2 pr-[var(--sp-24)] text-[var(--color-text-primary)] text-left">
+              <th className="body2 pr-[var(--sp-24)] text-[var(--color-text-primary)] text-left xl:w-[15%]">
                 {!isDesktop ? "地區" : "縣市"}
               </th>
               {isDesktop && (

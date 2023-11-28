@@ -14,9 +14,9 @@ export default function VoteItem({
   clickHandler,
   children,
 }) {
-  const { isDsektop, setIsDesktop } = useContext(windowSizeContext);
+  const { isDesktop } = useContext(windowSizeContext);
 
-  return isDsektop ? (
+  return isDesktop ? (
     <tr
       className="flex items-center bg-[var(--color-default-white)] border-b-[1px] border-b-[var(--color-line)] rounded-[var(--sp-8)] cursor-pointer hover:bg-[var(--color-hover)]"
       onClick={clickHandler}
