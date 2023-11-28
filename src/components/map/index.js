@@ -1,10 +1,12 @@
 import Button from "../button";
 import map from "../../images/map.svg";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { requestContext } from "../../App";
 
 export default function Map() {
   const [showModal, setShowModal] = useState(false);
+  const { request, setRequest } = useContext(requestContext);
   const ref = useRef();
 
   const clickHandler = () => {
@@ -14,6 +16,20 @@ export default function Map() {
   const backdropClickHandler = (e) => {
     if (ref.current && !ref.current.contains(e.target)) {
       setShowModal(false);
+    }
+  };
+
+  const backHandler = () => {
+    if (request.location[1] !== "選擇區域") {
+      setRequest((prev) => ({
+        year: prev.year,
+        location: [prev.location[0], "選擇區域"],
+      }));
+    } else {
+      setRequest((prev) => ({
+        year: prev.year,
+        location: ["全部", "選擇區域"],
+      }));
     }
   };
 
@@ -60,6 +76,7 @@ export default function Map() {
                 <Button
                   size={"md"}
                   customClass={"text-[var(--color-text-primary)] body2"}
+                  clickHandler={backHandler}
                 >
                   返回
                 </Button>

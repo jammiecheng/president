@@ -18,6 +18,8 @@ import {
   Tooltip,
 } from "chart.js";
 import VoteItem from "../vote-item";
+import HorizenBar from "../horizenBar";
+// import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis } from "recharts";
 
 ChartJS.register(
   ArcElement,
@@ -26,7 +28,7 @@ ChartJS.register(
   BarElement,
   PointElement,
   LineElement,
-  Tooltip,
+  Tooltip
 );
 
 export default function Content() {
@@ -177,6 +179,10 @@ export default function Content() {
   };
 
   const options = {
+    interaction: {
+      mode: "index",
+      intersect: false,
+    },
     scales: {
       x: {
         grid: {
@@ -205,11 +211,11 @@ export default function Content() {
     county.map((element) => {
       if (element === e) {
         setRequest((prev) => ({ year: prev.year, location: [e, "選擇區域"] }));
-      } else {
-        console.log(location.request.location[0]);
-        // location[request.location[0]].map((item) => {
-        //   console.log(item);
-        // });
+      } else if (request.location[0] !== "全部") {
+        setRequest((prev) => ({
+          year: prev.year,
+          location: [prev.location[0], e],
+        }));
       }
       return "";
     });
@@ -230,8 +236,8 @@ export default function Content() {
           {request.location[0] === "全部"
             ? "全臺縣市總統得票"
             : request.location[1] === "選擇區域"
-              ? request.location[0]
-              : request.location[1]}
+            ? request.location[0]
+            : request.location[1]}
         </h3>
         {request.location[0] !== "全部" ? (
           <div className="pt-[var(--sp-8)] pb-[calc(var(--sp-8)*5/2)] gap-[var(--sp-8)] items-center hidden xl:flex">
@@ -279,7 +285,7 @@ export default function Content() {
           </h5>
           <div className="flex items-stretch gap-[var(--sp-16)] flex-col xl:flex-row">
             <div className="flex-1 bg-[var(--color-default-white)] p-[var(--sp-16)] rounded-[calc(var(--sp-8)/2*3)] xl:px-[var(--sp-24)]">
-              <ul className="items-start gap-[var(--sp-8)] flex-col xl:flex-row xl:gap-[calc(var(--sp-8)*5)] xl:justify-between">
+              <ul className="mb-[calc(var(--sp-8)/2*3)] items-start gap-[var(--sp-8)] flex-col xl:flex-row xl:gap-[calc(var(--sp-8)*5)]">
                 <li className="flex items-start gap-[calc(var(--sp-8)/2*3)]">
                   <img
                     src={candidate1}
@@ -350,9 +356,19 @@ export default function Content() {
                   </div>
                 </li>
               </ul>
-              <div></div>
+              <HorizenBar
+                group1={Math.round(
+                  (parseInt(total.第一組) / parseInt(total.有效票數)) * 100
+                )}
+                group2={Math.round(
+                  (parseInt(total.第二組) / parseInt(total.有效票數)) * 100
+                )}
+                group3={Math.round(
+                  (parseInt(total.第三組) / parseInt(total.有效票數)) * 100
+                )}
+              />
             </div>
-            <div className="flex-1 bg-[var(--color-default-white)] px-[var(--sp-24)] py-[calc(var(--sp-8)/2*3)] rounded-[calc(var(--sp-8)/2*3)] flex gap-[calc(var(--sp-8)*5)] xl:py-[var(--sp-16)]">
+            <div className="flex-1 bg-[var(--color-default-white)] px-[var(--sp-24)] py-[calc(var(--sp-8)/2*3)] rounded-[calc(var(--sp-8)/2*3)] flex items-center gap-[calc(var(--sp-8)*5)] xl:py-[var(--sp-16)]">
               <div className="w-[124px] relative">
                 <Doughnut data={donutChartData} />
                 <div className="flex flex-col justify-center items-center absolute top-0 left-0 bottom-0 right-0">
@@ -428,7 +444,7 @@ export default function Content() {
                 </li>
               </ul>
             </div>
-            <div>
+            <div className="p-[var(--sp-24)] pt-[calc(var(--sp-8)/2*3)] overflow-x-scroll">
               <Bar data={votesCountData} options={options} />
             </div>
           </div>
@@ -456,7 +472,7 @@ export default function Content() {
                 </li>
               </ul>
             </div>
-            <div>
+            <div className="p-[var(--sp-24)] pt-[calc(var(--sp-8)/2*3)] overflow-x-scroll">
               <Line data={votesPercentData} options={options} />
             </div>
           </div>
@@ -467,7 +483,7 @@ export default function Content() {
           </h5>
           <table className="w-full mb-[calc(var(--sp-32)+var(--sp-8))]">
             <thead className="w-full flex bg-[var(--color-bg)] p-[var(--sp-8)] rounded-[calc(var(--sp-8)/2)]">
-              <th className="body2 w-[15%] pr-[var(--sp-24)] text-[var(--color-text-primary)] text-left">
+              <th className="body2 pr-[var(--sp-24)] text-[var(--color-text-primary)] text-left">
                 {!isDesktop ? "地區" : "縣市"}
               </th>
               {isDesktop && (
@@ -495,13 +511,28 @@ export default function Content() {
                     <VoteItem
                       key={index}
                       county={item.行政區別}
-                      group1={item.第一組}
-                      group2={item.第二組}
-                      group3={item.第三組}
+                      group1={parseInt(item.第一組)}
+                      group2={parseInt(item.第二組)}
+                      group3={parseInt(item.第三組)}
                       votes={item.投票數}
                       votesPercent={item.投票率}
                       clickHandler={() => clickHandler(item.行政區別)}
-                    />
+                    >
+                      <HorizenBar
+                        group1={Math.round(
+                          (parseInt(item.第一組) / parseInt(item.有效票數)) *
+                            100
+                        )}
+                        group2={Math.round(
+                          (parseInt(item.第二組) / parseInt(item.有效票數)) *
+                            100
+                        )}
+                        group3={Math.round(
+                          (parseInt(item.第三組) / parseInt(item.有效票數)) *
+                            100
+                        )}
+                      />
+                    </VoteItem>
                   );
                 })}
             </tbody>
