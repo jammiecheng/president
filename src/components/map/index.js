@@ -19,7 +19,7 @@ export default function Map() {
 
   return (
     <>
-      <div className="w-full h-[148px] bg-[#e4faff] xl:w-1/4 xl:h-[calc(100vh-72px)] xl:pt-[72px] xl:pl-[13.6px]">
+      <div className="w-full h-[148px] bg-[#e4faff] xl:w-1/4 xl:h-[calc(100vh-66px)] xl:pt-[66px] xl:pl-[13.6px]">
         <div className="w-full h-[148px] bg-[#495057] bg-opacity-60 absolute xl:hidden">
           <Button
             size={"md"}
@@ -36,8 +36,14 @@ export default function Map() {
       </div>
       {showModal &&
         createPortal(
-          <div className="w-full h-full bg-[#495057] bg-opacity-50 z-50 fixed top-0 left-0" onClick={backdropClickHandler}>
-            <div ref={ref} className="rounded-2xl bg-[var(--color-default-white)] mx-[var(--sp-16)] my-[var(--sp-24)] overflow-hidden">
+          <div
+            className="w-full h-full bg-[#495057] bg-opacity-50 z-50 fixed top-0 left-0"
+            onClick={backdropClickHandler}
+          >
+            <div
+              ref={ref}
+              className="rounded-2xl bg-[var(--color-default-white)] mx-[var(--sp-16)] my-[var(--sp-24)] overflow-hidden"
+            >
               <div className="flex px-[var(--sp-16)] py-[calc(var(--sp-8)/2*3)] justify-between">
                 <h6 className="text-[var(--color-text-primary)]">台灣地圖</h6>
                 <button
@@ -68,7 +74,7 @@ export default function Map() {
               </div>
             </div>
           </div>,
-          document.body
+          document.body,
         )}
     </>
   );

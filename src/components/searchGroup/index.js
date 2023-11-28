@@ -3,7 +3,7 @@ import { location } from "../../data";
 import SelectItem from "../select-item";
 import { requestContext, windowSizeContext } from "../../App";
 
-export default function SearchGroup({ size }) {
+export default function SearchGroup() {
   const { request, setRequest } = useContext(requestContext);
   const { isDesktop } = useContext(windowSizeContext);
 
