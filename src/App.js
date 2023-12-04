@@ -19,7 +19,7 @@ export const windowSizeContext = createContext();
 export default function App() {
   const [request, setRequest] = useState({
     year: 0,
-    location: ["全部", "選擇區域"],
+    location: ["全國", "選擇區域"],
   });
   const [isDesktop, setIsDesktop] = useState(true);
 
@@ -136,7 +136,7 @@ export default function App() {
                   </li>
                 </ul>
               </div>
-              <ul className="fixed">
+              <ul className="fixed bottom-[-18px] w-full flex justify-between">
                 <li>
                   <img src={person1} alt={person1} />
                 </li>

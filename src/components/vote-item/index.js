@@ -15,7 +15,6 @@ export default function VoteItem({
   children,
 }) {
   const { isDesktop } = useContext(windowSizeContext);
-
   return isDesktop ? (
     <tr
       className="flex items-center bg-[var(--color-default-white)] border-b-[1px] border-b-[var(--color-line)] rounded-[var(--sp-8)] cursor-pointer hover:bg-[var(--color-hover)]"
@@ -33,26 +32,38 @@ export default function VoteItem({
         <img
           className="w-[var(--sp-32)] rounded-[var(--sp-16)] mr-[var(--sp-8)]"
           src={
-            group1 > group2 && group1 > group3
+            group3 !== undefined
+              ? group1 > group2 && group1 > group3
+                ? candidate1
+                : group2 > group3 && group2 > group1
+                ? candidate2
+                : candidate3
+              : group1 > group2
               ? candidate1
-              : group2 > group3 && group2 > group1
-              ? candidate2
-              : candidate3
+              : candidate2
           }
           alt={
-            group1 > group2 && group1 > group3
+            group3 !== undefined
+              ? group1 > group2 && group1 > group3
+                ? candidate1
+                : group2 > group3 && group2 > group1
+                ? candidate2
+                : candidate3
+              : group1 > group2
               ? candidate1
-              : group2 > group3 && group2 > group1
-              ? candidate2
-              : candidate3
+              : candidate2
           }
         />
         <span>
-          {group1 > group2 && group1 > group3
+          {group3 !== undefined
+            ? group1 > group2 && group1 > group3
+              ? "德古拉"
+              : group2 > group3 && group2 > group1
+              ? "林克"
+              : "綠巨魔"
+            : group1 > group2
             ? "德古拉"
-            : group2 > group3 && group2 > group1
-            ? "林克"
-            : "綠巨魔"}
+            : "林克"}
         </span>
       </td>
       <td className="w-[15%] pr-[var(--sp-24)] py-[calc(var(--sp-8)/2*3)] body2 text-[var(--color-text-primary)]">
@@ -83,26 +94,38 @@ export default function VoteItem({
           <img
             className="w-[var(--sp-32)] rounded-[var(--sp-16)] mr-[var(--sp-8)]"
             src={
-              group1 > group2 && group1 > group3
+              group3 !== undefined
+                ? group1 > group2 && group1 > group3
+                  ? candidate1
+                  : group2 > group3 && group2 > group1
+                  ? candidate2
+                  : candidate3
+                : group1 > group2
                 ? candidate1
-                : group2 > group3 && group2 > group1
-                ? candidate2
-                : candidate3
+                : candidate2
             }
             alt={
-              group1 > group2 && group1 > group3
+              group3 !== undefined
+                ? group1 > group2 && group1 > group3
+                  ? candidate1
+                  : group2 > group3 && group2 > group1
+                  ? candidate2
+                  : candidate3
+                : group1 > group2
                 ? candidate1
-                : group2 > group3 && group2 > group1
-                ? candidate2
-                : candidate3
+                : candidate2
             }
           />
           <span>
-            {group1 > group2 && group1 > group3
+            {group3 !== undefined
+              ? group1 > group2 && group1 > group3
+                ? "德古拉"
+                : group2 > group3 && group2 > group1
+                ? "林克"
+                : "綠巨魔"
+              : group1 > group2
               ? "德古拉"
-              : group2 > group3 && group2 > group1
-              ? "林克"
-              : "綠巨魔"}
+              : "林克"}
           </span>
         </div>
         {children}

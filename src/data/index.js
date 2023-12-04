@@ -392,7 +392,7 @@ export const votes = [
     year: 2020,
     data: [
       {
-        county: "全部",
+        county: "全國",
         data: [
           {
             行政區別: "總計",
@@ -5054,7 +5054,7 @@ export const votes = [
   {
     year: 2016,
     data: [
-      { county: "全部", data: [] },
+      { county: "全國", data: [] },
       { county: "臺北市", data: [] },
       { county: "基隆市", data: [] },
       { county: "新北市", data: [] },
@@ -5082,7 +5082,7 @@ export const votes = [
   {
     year: 2012,
     data: [
-      { county: "全部", data: [] },
+      { county: "全國", data: [] },
       { county: "臺北市", data: [] },
       { county: "基隆市", data: [] },
       { county: "新北市", data: [] },
@@ -5110,7 +5110,7 @@ export const votes = [
   {
     year: 2008,
     data: [
-      { county: "全部", data: [] },
+      { county: "全國", data: [] },
       { county: "臺北市", data: [] },
       { county: "基隆市", data: [] },
       { county: "新北市", data: [] },
@@ -5138,7 +5138,7 @@ export const votes = [
   {
     year: 2004,
     data: [
-      { county: "全部", data: [] },
+      { county: "全國", data: [] },
       { county: "臺北市", data: [] },
       { county: "基隆市", data: [] },
       { county: "新北市", data: [] },
@@ -5166,7 +5166,7 @@ export const votes = [
   {
     year: 2000,
     data: [
-      { county: "全部", data: [] },
+      { county: "全國", data: [] },
       { county: "臺北市", data: [] },
       { county: "基隆市", data: [] },
       { county: "新北市", data: [] },
@@ -5194,7 +5194,7 @@ export const votes = [
   {
     year: 1996,
     data: [
-      { county: "全部", data: [] },
+      { county: "全國", data: [] },
       { county: "臺北市", data: [] },
       { county: "基隆市", data: [] },
       { county: "新北市", data: [] },

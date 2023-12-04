@@ -28,7 +28,7 @@ export default function Map() {
     } else {
       setRequest((prev) => ({
         year: prev.year,
-        location: ["全部", "選擇區域"],
+        location: ["全國", "選擇區域"],
       }));
     }
   };
